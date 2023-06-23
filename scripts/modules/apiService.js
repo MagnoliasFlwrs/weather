@@ -15,3 +15,17 @@ export const fetchWeather = async (town) => {
     }
     
 }
+export const fetchForecast = async (town) => {
+    try {
+        const response = await fetch(`${API_URL}forecast?q=${town}&appid=${API_KEY}&lang=ru`);
+        if (!response.ok) {
+            throw new Error('ошибка запроса')
+        }
+        const data = await response.json();
+        return { success:true , data};
+
+    } catch (error) {
+        return { success:false , error};
+    }
+    
+}
